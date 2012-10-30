@@ -306,6 +306,16 @@
 		},
 		_validate : function() {
 
+
+  			if( this.options.minItems instanceof Function ) {
+  		  
+  		  		this._minItemsFn = this.options.minItems;
+  		  		this.options.minItems = this.options.minItems( document.documentElement.clientWidth );
+  		
+  			}
+
+
+
 			if( this.options.speed < 0 ) {
 
 				this.options.speed = 500;
@@ -432,6 +442,11 @@
 			var self = this;
 
 			$window.on( 'debouncedresize.elastislide', function() {
+
+				if( self._minItemsFn ) {
+				  self.options.minItems = self._minItemsFn( document.documentElement.clientWidth );
+				}
+
 
 				self._setItemsSize();
 				self._configure();

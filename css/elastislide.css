@@ -52,6 +52,12 @@
 	-ms-transform: translateX(0px);
 	-o-transform: translateX(0px);
 	transform: translateX(0px);
+	transition-property: -webkit-transform;
+	transition-property: -moz-transform;
+	transition-property: -o-transform;
+	transition-property: -ms-transform;
+	transition-property: transform;
+  	transition-duration: 200ms;
 }
 
 .elastislide-horizontal ul {

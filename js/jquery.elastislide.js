@@ -632,8 +632,20 @@
 			}
 
 			if( this.support ) {
-				
-				this.options.orientation === 'horizontal' ? this.$el.css( 'transform', 'translateX(' + tvalue + 'px)' ) : this.$el.css( 'transform', 'translateY(' + tvalue + 'px)' );
+			
+		                if (this.options.orientation === 'horizontal') {
+		                    this.$el.css( '-webkit-transform', 'translateX(' + tvalue + 'px)' );
+		                    this.$el.css( '-o-transform', 'translateX(' + tvalue + 'px)' );
+		                    this.$el.css( '-ms-transform', 'translateX(' + tvalue + 'px)' );
+		                    this.$el.css( '-moz-transform', 'translateX(' + tvalue + 'px)' );
+		                    this.$el.css( 'transform', 'translateX(' + tvalue + 'px)' );
+		                } else {
+		                    this.$el.css( '-webkit-transform', 'translateY(' + tvalue + 'px)' );
+		                    this.$el.css( '-o-transform', 'translateY(' + tvalue + 'px)' );
+		                    this.$el.css( '-ms-transform', 'translateY(' + tvalue + 'px)' );
+		                    this.$el.css( '-moz-transform', 'translateY(' + tvalue + 'px)' );
+		                    this.$el.css( 'transform', 'translateY(' + tvalue + 'px)' );
+		                }
 
 			}
 			else {

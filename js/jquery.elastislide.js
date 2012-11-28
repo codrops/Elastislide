@@ -198,6 +198,9 @@
 		// when we resize the window, this will make sure minItems are always shown 
 		// (unless of course minItems is higher than the total number of elements)
 		minItems : 3,
+		// optionally specify a selector rather than using the img element to read the image sizes
+		// (we only use the first matching element within our items)
+		imgSizeItemSelector : 'img',
 		// index of the current item (left most item of the carousel)
 		start : 0,
 		// click item callback
@@ -346,7 +349,7 @@
 			this.$wrapper = this.$carousel.parent().removeClass( 'elastislide-loading' );
 
 			// save original image sizes
-			var $img = this.$items.find( 'img:first' );
+			var $img = this.$items.find( this.options.imgSizeItemSelector ).first();
 			this.imgSize = { width : $img.outerWidth( true ), height : $img.outerHeight( true ) };
 
 			this._setItemsSize();

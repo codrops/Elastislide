@@ -754,13 +754,13 @@
 		// public method: slides to the next set of items
 		next : function() {
 
-			self._slide( 'next' );
+			this._slide( 'next' );
 
 		},
 		// public method: slides to the previous set of items
 		previous : function() {
 
-			self._slide( 'prev' );
+			this._slide( 'prev' );
 
 		},
 		// public method: slides to the first item
@@ -796,13 +796,13 @@
 	
 	$.fn.elastislide = function( options ) {
 
-		var self = $.data( this, 'elastislide' );
-		
 		if ( typeof options === 'string' ) {
 			
 			var args = Array.prototype.slice.call( arguments, 1 );
 			
 			this.each(function() {
+			
+				var self = $.data( this, 'elastislide' );
 			
 				if ( !self ) {
 
@@ -827,6 +827,8 @@
 		else {
 		
 			this.each(function() {
+				
+				var self = $.data( this, 'elastislide' );
 				
 				if ( self ) {
 

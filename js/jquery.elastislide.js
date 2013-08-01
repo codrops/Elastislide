@@ -22,6 +22,10 @@
 	* Copyright 2011 @louis_remi
 	* Licensed under the MIT license.
 	*/
+	
+	var autoSlide = false; //set this to enable autoslide.
+	var delayTime = 3000; //ms — autoslide delay.
+	
 	var $event = $.event,
 	$special,
 	resizeTimeout;
@@ -441,9 +445,32 @@
 
 		},
 		_initEvents : function() {
-
+			
 			var self = this;
-
+			//autoslide. To enablethis, set "var autoSlide" to "true" above.
+			if( autoSlide ) {
+				var translation = 0;
+				// width/height of an item ( <li> )
+				var itemSpace = this.options.orientation === 'horizontal' ? this.$items.outerWidth( true ) : this.$items.outerHeight( true );
+				// total width/height of the <ul>
+				var totalSpace = this.itemsCount * itemSpace;
+				// visible width/height
+				var visibleSpace = this.options.orientation === 'horizontal' ? this.$carousel.width() : this.$carousel.height();
+				window.setInterval(function(){
+				    //test if we should go to next slide or return to first slide
+				    if(totalSpace > translation + visibleSpace)
+				    {
+				        self._slide('next');
+				        translation += visibleSpace;
+				    }
+				    else
+				    {
+				        self._slideTo(0);
+				        translation = 0;
+				    }
+				}, delayTime);
+			}
+			
 			$window.on( 'debouncedresize.elastislide', function() {
 
 				if( self._minItemsFn ) {

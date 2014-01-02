@@ -23,9 +23,6 @@
 	* Licensed under the MIT license.
 	*/
 	
-	var autoSlide = false; //set this to enable autoslide.
-	var delayTime = 3000; //ms — autoslide delay.
-	
 	var $event = $.event,
 	$special,
 	resizeTimeout;
@@ -207,6 +204,13 @@
 		imgSizeItemSelector : 'img',
 		// index of the current item (left most item of the carousel)
 		start : 0,
+		// autoslide feature: true || false
+		// automatically loops through the carousel (after hitting the end of the list goes back to front)
+		// disabled by default
+		autoSlide: false,
+		// autoslide delay time, specifies time interval between autoslide steps (in milliseconds)
+		// 3000ms by default
+		delayTime: 3000,
 		// click item callback
 		onClick : function( el, position, evt ) { return false; },
 		onReady : function() { return false; },
@@ -448,7 +452,7 @@
 			
 			var self = this;
 			//autoslide. To enablethis, set "var autoSlide" to "true" above.
-			if( autoSlide ) {
+			if( this.options.autoSlide ) {
 				var translation = 0;
 				// width/height of an item ( <li> )
 				var itemSpace = this.options.orientation === 'horizontal' ? this.$items.outerWidth( true ) : this.$items.outerHeight( true );
@@ -468,7 +472,7 @@
 				        self._slideTo(0);
 				        translation = 0;
 				    }
-				}, delayTime);
+				}, this.options.delayTime);
 			}
 			
 			$window.on( 'debouncedresize.elastislide', function() {

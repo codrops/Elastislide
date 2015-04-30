@@ -306,7 +306,7 @@
 
 				}
 
-				self.options.onReady();
+				self.options.onReady(self.$el);
 
 			} );
 
